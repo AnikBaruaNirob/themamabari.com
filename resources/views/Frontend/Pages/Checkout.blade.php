@@ -153,14 +153,14 @@
                     <li class="list-group-item d-flex justify-content-between">
                         <span>{{$cart['pname']}}</span>
                       
-                        <strong>{{$cart['subtotal']}}</strong>
+                        <strong>{{$cart['subtotal']}}.00</strong>
                     </li>
                    
                     
                     @endforeach
                     <li class="list-group-item d-flex justify-content-between">
                         <span>Total (BDT)</span>
-                        <strong>{{ session('$totalSubtotal') }}</strong>
+                        <strong>{{ array_sum(array_column(session()->get('basket'),'subtotal'))}}.00</strong>
                     </li>
                 </ul>
                

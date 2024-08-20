@@ -70,14 +70,14 @@ class ProductController extends Controller
             // Save the updated cart back to the session
             session()->put('basket', $mycart);
     
-            // Calculate the total sum of subtotals
-            $totalSubtotal = 0;
-            foreach($mycart as $item) {
-                $totalSubtotal += $item['subtotal'];
-            }
-            
-            // Optionally, store the total sum in the session or use it as needed
-            session()->put('totalSubtotal', $totalSubtotal);
+            // // Calculate the total sum of subtotals
+            // $totalSubtotal = 0;
+            // foreach($mycart as $item) {
+            //     $totalSubtotal += $item['subtotal'];
+            // }
+             
+            // // Optionally, store the total sum in the session or use it as needed
+            // session()->put('totalSubtotal', $totalSubtotal);
     
             notify()->success('Product Added Again');
             return redirect()->back();

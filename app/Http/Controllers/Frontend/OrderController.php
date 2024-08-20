@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use Carbon\Carbon;
 use App\Models\OrderDetail;
 use Illuminate\Http\Request;
 
@@ -49,10 +50,12 @@ class OrderController extends Controller
     public function showInvoice($orderId)
 {
     $order = Order::with('OrderDetails')->find($orderId);
+       // Generate a dynamic invoice number if not stored in the database
+    $invoiceNumber = 'MB-' . str_pad($order->id, 6, '0', STR_PAD_LEFT); // Example: INV-000001
+    $dueDate = Carbon::parse($order->created_at)->addDays(5)->format('Y/m/d');
 
     // Pass the order details to the view
-    return view('Frontend.Pages.invoice', compact('order'));
+    return view('Frontend.Pages.invoice', compact('order', 'invoiceNumber' , 'dueDate'));
 }
-
 
 }

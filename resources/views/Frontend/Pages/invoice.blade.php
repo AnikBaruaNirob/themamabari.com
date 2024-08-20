@@ -36,15 +36,16 @@
 
                         <div class="row mb-4">
                             <div class="col-sm-6">
-                                <h6 class="mb-3">Invoice #: </h6>
+                                
+                                <h6 class="mb-3">Invoice #: {{$invoiceNumber}} </h6>
                                 <h6>Invoice Date: {{$order-> created_at}}</h6>
-                                <h6>Due Date: </h6>
+                                <h6>Due Date: {{$dueDate}} </h6>
                             </div>
                             <div class="col-sm-6 text-end">
-                            @foreach($order->OrderDetails as $item)
+                          
                                 <h6 class="mb-3">Total Amount Due:</h6>
-                                <h2 class="text-danger">{{$item->subtotal}} BDT</h2>
-                            @endforeach    
+                                <h2 class="text-danger">{{ number_format(array_sum(array_column(session()->get('basket'), 'subtotal')) * 1.10, 2) }} BDT</h2>
+                       
                             </div>
                         </div>
 
@@ -60,9 +61,9 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                   @foreach($order->OrderDetails as $item)
+                                   @foreach($order->OrderDetails as $key => $item)
                                         <tr>
-                                            <td></td>
+                                            <td>{{ $key + 1 }}</td>
                                             <td>{{$item->product_name}}</td>
                                             <td class="text-center">{{$item->product_quantity}}</td>
                                             <td class="text-center">{{$item->product_unit_price}} BDT</td>
@@ -81,15 +82,15 @@
                                     <tbody>
                                         <tr>
                                             <td class="text-end"><strong>Subtotal</strong></td>
-                                            <td class="text-end"> BDT</td>
+                                            <td class="text-end"><b> {{ array_sum(array_column(session()->get('basket'),'subtotal')) }}.00 BDT </b></td>
                                         </tr>
                                         <tr>
                                             <td class="text-end"><strong>Tax (10%)</strong></td>
-                                            <td class="text-end"> BDT</td>
+                                            <td class="text-end">{{ number_format(array_sum(array_column(session()->get('basket'), 'subtotal')) * 0.10, 2) }} BDT</td>
                                         </tr>
                                         <tr>
                                             <td class="text-end"><strong>Total</strong></td>
-                                            <td class="text-end"><strong> BDT</strong></td>
+                                            <td class="text-end"><strong>{{ number_format(array_sum(array_column(session()->get('basket'), 'subtotal')) * 1.10, 2) }} BDT</strong></td>
                                         </tr>
                                     </tbody>
                                 </table>
