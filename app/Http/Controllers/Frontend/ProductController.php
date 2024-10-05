@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\CustomerAuth; // Ensure this is correct
+
 use App\Models\product;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -18,8 +20,8 @@ class ProductController extends Controller
     }
     public function shopgrid(){
         $products= product::all(); 
-        
-        return view('Frontend.pages.shop-grid',compact('products'));
+        $latestProducts = Product::orderBy('created_at', 'desc')->take(5)->get();
+        return view('Frontend.pages.shop-grid',compact('products', 'latestProducts'));
     }
     
     public function search(){
@@ -90,18 +92,25 @@ class ProductController extends Controller
         
         return view('Frontend.Pages.viewcart', compact('mycart'));
     }
-    public function viewproduct($pID){
+    public function viewproduct($viewproduct){
       
        // $categories = Category::find($pID); // Fetch all categories
-        $products= product::find($pID); 
+        $products= product::find($viewproduct); 
+     
+    // Fetch the latest 5 products
+        $latestProducts = Product::orderBy('created_at', 'desc')->take(5)->get();
+       // dd($latestProducts);
 
         $multipleproduct= product::where('id', '!=' , $products->id)
                                    ->where('pcategory', $products-> category)
                                    ->limit(4)
                                    ->get();
-        return view('Frontend.Pages.viewproduct',compact('products', 'multipleproduct'));
+                              
+
+        return view('Frontend.Pages.shopdetails', compact('products', 'multipleproduct', 'latestProducts'));
 
     }
+    
 }
     
 

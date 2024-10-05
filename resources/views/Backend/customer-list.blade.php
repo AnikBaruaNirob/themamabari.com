@@ -2,6 +2,8 @@
 
 
 @section('content')
+
+
 <h1>Customer List</h1>
 
 <table class="table">

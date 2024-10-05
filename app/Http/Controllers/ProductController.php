@@ -30,10 +30,12 @@ class ProductController extends Controller
     {
 
 
+       
         $validation=Validator::make($request->all(),[
             'product_name'=>'required',
             'product_price'=>'required|numeric|min:10',
-            'product_image'=>'required|file|max:1024'
+            'product_image'=>'required|file|max:1024',
+            'product_Stock'=>'required'
         ]);
         if($validation->fails())
         {
@@ -62,7 +64,9 @@ class ProductController extends Controller
         'pcategory'=>$request->category_id,
         'pdescription'=>$request->product_Des,
         'price' =>$request->product_price,
+        'stock'=> $request->product_Stock,
         'image'=>$fileName
+        
        ]);
         //dd($request);
        return redirect()->route('product.list');
@@ -122,6 +126,7 @@ class ProductController extends Controller
             'pname'=>$request->pname,
             'pdescription'=>$request->pdescription,
             'price'=>$request->price,
+            'product_Stock'=>$request->stock,
             'image'=> $updateImage
          
         ]);
@@ -130,5 +135,10 @@ class ProductController extends Controller
         return redirect()->route('product.list');
 
 
+    }
+    public function stock(){
+
+        $allProduct=Product::paginate(5);
+        return view('Backend.pages.stock',compact('allProduct'));
     }
 }

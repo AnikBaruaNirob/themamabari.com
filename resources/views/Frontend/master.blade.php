@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="{{url('/css/owl.carousel.min.css')}}" type="text/css">
     <link rel="stylesheet" href="{{url('/css/slicknav.min.css')}}" type="text/css">
     <link rel="stylesheet" href="{{url('/css/style.css')}}" type="text/css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -51,6 +52,9 @@
     <script src="js/mixitup.min.js"></script>
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 
 

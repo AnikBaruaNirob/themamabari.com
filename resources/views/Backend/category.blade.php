@@ -1,17 +1,20 @@
 @extends('backend.master')
 
 @section('content')
+<div class="container">
 
+<a class="btn btn-primary" href="{{route('category.form')}}">Create Category</a>
 <h1>Category List</h1>
 
 <!-- <button type="button" class="btn btn-primary">Primary</button> -->
-<a class="btn btn-primary" href="{{route('category.form')}}">Create Category</a>
+
 
 <table class="table">
   <thead>
     <tr>
       <th scope="col">#</th>
       <th scope="col">Category Name</th>
+      <th scope="col">Category Parent</th>
       <th scope="col">Description</th>
       <th scope="col">Status</th>
       <th scope="col">Action</th>
@@ -25,6 +28,7 @@
 <tr>
       <th scope="row">{{$cat->id}}</th>
       <td>{{$cat->name}}</td>
+      <td>{{$cat->parent_id}}</td>
       <td>{{$cat->description}}</td>
       <td>{{$cat->status}}</td>
       <td>
@@ -40,6 +44,7 @@
     
   </tbody>
 </table>
+</div>
 
 {{ $allCategory->links() }}
 

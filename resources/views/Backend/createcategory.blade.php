@@ -11,6 +11,18 @@
     <input name="cat_name" type="text" class="form-control" id="name"  placeholder="Enter Your Full Name">
     
   </div>
+
+  <div class="form-group">
+    <label for="parent_name">Category Parent</label>
+    <select name="parent_id" id="parent_name">
+      <option value="">select Parent Category</option>
+      @foreach($allcategory as $cat)
+    <option value="{{$cat->id}}">{{$cat->name}} </option>
+
+      @endforeach
+    </select>
+    
+  </div>
  
   <div class="form-group">
     <label for="description">Description</label>

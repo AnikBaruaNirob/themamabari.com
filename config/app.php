@@ -105,6 +105,8 @@ return [
         ),
     ],
 
+    Barryvdh\DomPDF\ServiceProvider::class,  // Add this line
+
     /*
     |--------------------------------------------------------------------------
     | Maintenance Mode Driver
@@ -122,5 +124,21 @@ return [
         'driver' => env('APP_MAINTENANCE_DRIVER', 'file'),
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
+
+    // 'providers' => [
+
+    //     // ... other providers
+
+    //     Barryvdh\DomPDF\ServiceProvider::class,
+
+    // ],
+
+    // 'aliases' => [
+
+    //     // ... other aliases
+
+    //     'PDF' => Barryvdh\DomPDF\Facade::class,  // Correct alias
+
+    // ],
 
 ];

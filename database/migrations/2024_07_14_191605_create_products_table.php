@@ -17,7 +17,9 @@ return new class extends Migration
             $table->double('price',10,2);
             $table->string('pcategory');
             $table->text('pdescription')->nullable(); 
+            $table->integer('stock');
             $table->string('image')->nullable();   
+            
             $table->timestamps();
         });
     }

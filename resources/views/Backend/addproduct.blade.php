@@ -30,6 +30,11 @@
     <label for="p_price">Enter Product price:</label>
     <input required name="product_price" type="text" class="form-control" id="p_price"  placeholder="Enter product price">
   </div>
+
+  <div class="form-group">
+    <label for="p_stock">Enter Product Stock:</label>
+    <input required name="product_Stock" type="number" class="form-control" id="p_stock"  placeholder="Enter product Stock">
+  </div>
   
 
   <div class="form-group">

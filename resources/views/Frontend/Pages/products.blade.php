@@ -36,10 +36,11 @@
             </div>
 
             <div class="d-flex flex-row">
-              <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary flex-fill me-1" data-mdb-ripple-color="dark">
+              
+            <a href="{{route('Fview.product', $prod->id)}}"  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary flex-fill me-1" data-mdb-ripple-color="dark">
                 View 
-              </button>
-              <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-danger flex-fill ms-1">Buy now</button>
+</a>
+              <a href="{{ route('add.cart', $prod->id) }}"  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-danger flex-fill ms-1">Buy now</a>
             </div>
           </div>
         </div>

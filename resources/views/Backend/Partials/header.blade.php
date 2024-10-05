@@ -15,7 +15,7 @@ z-index: 9999;
             </svg>
           </button>
           <ul class="header-nav d-none d-lg-flex">
-            <li class="nav-item"><a class="nav-link" href="#">Dashboard</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{route('home')}}"">Dashboard</a></li>
             <li class="nav-item"><a class="nav-link" href="#">Users</a></li>
             <li class="nav-item"><a class="nav-link" href="#">Settings</a></li>
           </ul>
@@ -116,7 +116,7 @@ z-index: 9999;
         <div class="container-fluid px-4">
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb my-0">
-              <li class="breadcrumb-item"><a href="#">Home</a>
+              <li class="breadcrumb-item"><a href="{{route('home')}}"">Home</a>
               </li>
               <li class="breadcrumb-item active"><span>Dashboard</span>
               </li>

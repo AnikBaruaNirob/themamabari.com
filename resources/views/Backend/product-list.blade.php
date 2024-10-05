@@ -1,11 +1,9 @@
 @extends('backend.master')
 
 @section('content')
-
+<div class="container">
+<a href="{{route('product.add')}}" class="btn btn-primary">Create new product</a>
 <h1>Product List</h1>
-
-<a class="btn btn-success" href="{{route('product.add')}}">Create new product</a>
-
 <table class="table">
   <thead>
     <tr>
@@ -15,7 +13,7 @@
       <th scope="col">Product Category</th>
       <th scope="col">Product Description</th>
       <th scope="col">Price</th>
-
+      <th scope="col">Stock</th>
       <th scope="col">Action</th>
     </tr>
   </thead>
@@ -31,6 +29,7 @@
       <td>{{$product->pcategory}}</td>
       <td>{{$product->pdescription}}</td>
       <td>{{$product->price}} BDT</td>
+      <td>{{$product->stock}} </td>
       
       <td>
         <a class="btn btn-success" href="{{route('view.product' , $product->id )}}">View</a>
@@ -43,6 +42,7 @@
   
   </tbody>
 </table>
+</div>
 
 {{ $allProduct->links() }}
 @endsection

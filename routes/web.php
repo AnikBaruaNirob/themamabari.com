@@ -9,10 +9,14 @@ use App\Http\Controllers\Frontend\HomeController as FrontendHomeController;
 use App\Http\Controllers\Frontend\ProductController as FrontendProductController;
 use App\Http\Controllers\Frontend\OrderController as FrontendOrderController;
 use App\Http\Controllers\Frontend\CustomerController as FrontendCustomerController;
+
 use App\Http\Controllers\AddtocartController;
+use App\Http\Controllers\BannerController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\Frontend\SslCommerzPaymentController ;
 use App\Http\Controllers\SignupController;
 use App\Http\Controllers\loginController;
+
 use App\Http\Controllers\WishlistController;
 
 use App\Models\product;
@@ -24,23 +28,44 @@ use function Laravel\Prompts\search;
 
 //For website
 
+
+
+
+
+
+
 Route::get('/',[FrontendHomeController::class,'home'])->name('Home');
 Route::get('/allproducts',[FrontendProductController::class,'productlist'])->name('frontend.products');
 Route::get('/shop-grid',[FrontendProductController::class,'shopgrid'])->name('product.shop');
 Route::get('/search',[FrontendProductController::class,'search'])->name('search');
-Route::get('/viewcart',[FrontendProductController::class,'viewcart'])->name('view.cart');
-Route::get('/viewproduct/{viewproduct}',[FrontendProductController::class,'viewproduct'])->name('Fview.product');
-Route::get('/add-to-cart/{ProductID}',[FrontendProductController::class,'add_to_cart'])->name('add.cart');
+
 Route::post('/registration',[FrontendCustomerController::class,'registration'])->name('customer.registration');
 Route::post('/do-login',[FrontendCustomerController::class,'customerLogin'])->name('customer.login');
-Route::get('/customerprofile',[FrontendCustomerController::class,'customerprofile'])->name('customer.profile');
+
+Route::group(['middleware'=>'CustomerAuth'],function(){
+  
+   Route::get('/Logout',[FrontendCustomerController::class,'Logout'])->name('Frontend.logout');
+   Route::get('/checkout',[FrontendOrderController::class,'Checkout'])->name('Product.checkout');
+   Route::get('/add-to-cart/{ProductID}',[FrontendProductController::class,'add_to_cart'])->name('add.cart');
+   Route::get('/viewcart',[FrontendProductController::class,'viewcart'])->name('view.cart');
+   Route::get('/viewproduct/{viewproduct}',[FrontendProductController::class,'viewproduct'])->name('Fview.product');
+   Route::post('/placeorder',[FrontendOrderController::class,'Placeorder'])->name('Order.Place');
+   Route::get('/invoice/{orderid}', [FrontendOrderController::class, 'showInvoice'])->name('invoice.show');
+   Route::get('invoice/pdf/{id}', [FrontendOrderController::class, 'downloadPDF'])->name('invoice.pdf');
+
+   Route::get('/customerprofile',[FrontendCustomerController::class,'customerprofile'])->name('customer.profile');
+   Route::get('/order-cancel/{order_id}',[FrontendCustomerController::class,'cancelOrder'])->name('cancel.order');
 
 // Route::get('/profile-edit{profileID}',[FrontendCustomerController::class,'edit'])->name('profile.edit');
 // Route::post('/profile-update{profileID}',[FrontendCustomerController::class,'update'])->name('profile.update');
-Route::get('/checkout',[FrontendOrderController::class,'Checkout'])->name('Product.checkout');
-Route::post('/placeorder',[FrontendOrderController::class,'Placeorder'])->name('Order.Place');
-Route::get('/invoice/{orderid}', [FrontendOrderController::class, 'showInvoice'])->name('invoice.show');
-Route::get('/Logout',[FrontendCustomerController::class,'Logout'])->name('Frontend.logout');
+
+
+   //SSLpayment
+   Route::post('/pay', [SslCommerzPaymentController::class, 'index']);
+   Route::post('/success', [SslCommerzPaymentController::class, 'success']);
+   
+});
+
 
 
 
@@ -60,9 +85,19 @@ Route::group(['prefix'=> 'admin'],function(){
 
    Route::get('/contact-us',[ContactController::class,'contact']);
 
-   Route::get('/order-list',[OrderController::class,'orderList']);
+   Route::get('/order-list',[OrderController::class,'orderList'])->name('order.list');
+   Route::get('/order/view{productid}',[OrderController::class,'vieworder'])->name('view.order');
+   Route::get('/order/edit{productid}',[OrderController::class, 'edit'])->name('order.edit');
+   Route::get('/order/delete{pID}',[OrderController::class, 'delete'])->name('order.delete');
 
    Route::get('/Logout',[loginController::class,'Logout'])->name('logout');
+
+   //Banner
+
+   Route::get('/banner-create',[BannerController::class,'CreateBanner'])->name('banners.create');
+   Route::get('/banner-form',[BannerController::class,'form'])->name('banners.form');
+   Route::post('/banner-store', [BannerController::class, 'store'])->name('banner.store');
+
 
    //product
    Route::get('/product-list',[ProductController::class,'productList'])->name('product.list');
@@ -78,6 +113,10 @@ Route::group(['prefix'=> 'admin'],function(){
 
 
    Route::post('/product-store',[ProductController::class,'store'])->name('product.store');
+
+   // Product Stock
+
+   Route::get('/Product/Stock',[ProductController::class,'stock'])->name('product.stock'); 
 
    #customer
 
@@ -96,6 +135,12 @@ Route::group(['prefix'=> 'admin'],function(){
    Route::get('/category/delete{pID}',[CategoryController::class, 'delete'])->name('category.delete');
    
    Route::post('/category-store',[CategoryController::class,'store'])->name('category.store');
+
+
+   
 });
 
 });
+
+
+// hello anik
