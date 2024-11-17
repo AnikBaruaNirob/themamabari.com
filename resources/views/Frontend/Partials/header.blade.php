@@ -83,7 +83,7 @@
               <!-- Button trigger modal -->
               <span>
     <a href="{{route('customer.profile')}}" style="color: black;">
-        {{ auth('customerGuard')->user()->name }}
+        {{ auth('customerGuard')->user()->Fullname }}
     </a>
     
 </span>
@@ -113,8 +113,13 @@
         @csrf
         <div class="modal-body">
           <div>
-            <label for="">Enter your name:</label>
-            <input required type="text" name="customer_name" placeholder="Enter your name" class="form-control">
+            <label for="">Enter your First Name:</label>
+            <input required type="text" name="customer_firstname" placeholder="Enter your First Name" class="form-control">
+          </div>
+
+          <div>
+            <label for="">Enter your Last Name:</label>
+            <input required type="text" name="customer_lastname" placeholder="Enter your Last Name" class="form-control">
           </div>
 
           <div>

@@ -9,5 +9,9 @@ class Customer extends Authenticatable
 {
     use HasFactory;
     protected $guarded=[];
+
+    public function getFullnameAttribute(){
+        return $this-> firstname. '      '.$this->lastname;
+    }
 }
 

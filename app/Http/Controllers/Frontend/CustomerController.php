@@ -22,7 +22,8 @@ class CustomerController extends Controller
       
        //step1 validation
         $validation=Validator::make($request->all(),[
-            'customer_name'=>'required',
+            'customer_firstname'=>'required',
+            'customer_lastname'=>'required',
             'email'=>'required|email|unique:Customers,email',
             'password'=>'required|min:6|confirmed',
             'mobile_number'=>'required|min:11|max:11'
@@ -63,7 +64,8 @@ class CustomerController extends Controller
        //dd($CustomerImage);
        Customer::create([
         //bam pase column name=>dan pase value (form input)
-        'name'=>$request->customer_name,
+        'firstname'=>$request->customer_firstname,
+        'lastname'=>$request->customer_lastname,
         'email'=>$request->email,
         'password'=>bcrypt($request->password),
 

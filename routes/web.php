@@ -101,6 +101,7 @@ Route::group(['prefix'=> 'admin'],function(){
 
    //product
    Route::get('/product-list',[ProductController::class,'productList'])->name('product.list');
+   Route::get('/Ejax-product-list',[ProductController::class,'EXproductList'])->name('ejax.product.list');
 
    Route::get('create-product',[ProductController::class,'addproduct'])->name('product.add');
    

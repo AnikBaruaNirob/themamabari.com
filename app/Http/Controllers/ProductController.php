@@ -7,14 +7,36 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redis;
+use Yajra\DataTables\Facades\DataTables;
 
 class ProductController extends Controller
 {
-    public function productList(){
+    public function productlist(){
+        
+       return view('Backend.product-list');
+    }
 
-       $allProduct=Product::paginate(5);
+    public function EXproductList(){
 
-        return view('Backend.product-list',compact('allProduct'));
+       {
+
+            $data=Product::all();
+        return DataTables::of($data)
+                    ->addIndexColumn()
+                    ->addColumn('action', function($row){
+                           $btn = '<a href="javascript:void(0)" class="edit btn btn-primary btn-sm">View</a><a href="" class="edit btn btn-success btn-sm">Edit</a>';
+                            return $btn;
+                    })
+                    ->rawColumns(['action'])
+                    ->make(true);
+        }
+
+        
+
+   
+
+
+
     }
 
 

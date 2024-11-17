@@ -14,7 +14,7 @@
                     <div class="card">
                         <img src="{{ url('/uploads/customer/' . auth('customerGuard')->user()->image) }}" alt="Profile Picture" class="card-img-top" width= "100px" height="200px">
                         <div class="card-body text-center">
-                            <h4 class="card-title">{{ auth('customerGuard')->user()->name }}</h4>
+                            <h4 class="card-title">{{ auth('customerGuard')->user()->Fullname }}</h4>
                             <a href="#" class="btn btn-primary">Edit Profile</a>
                             <a href="{{ route('Home') }}" class="btn btn-success">Back To Home</a>
                             <a href="{{ route('Frontend.logout') }}" class="btn btn-danger">Logout</a>
@@ -27,7 +27,7 @@
                             <h5>Profile Information</h5>
                         </div>
                         <div class="card-body">
-                            <h6>Full Name: {{ auth('customerGuard')->user()->name }}</h6>
+                            <h6>Full Name: {{ auth('customerGuard')->user()->Fullname }}</h6>
                             <h6>Email Address: {{ auth('customerGuard')->user()->email }}</h6>
                             <h6>Phone Number: {{ auth('customerGuard')->user()->mobile }}</h6>
                             <h6>Address: {{ auth('customerGuard')->user()->address }}</h6>
