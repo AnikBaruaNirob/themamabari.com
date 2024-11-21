@@ -12,6 +12,7 @@ use App\Http\Controllers\Frontend\CustomerController as FrontendCustomerControll
 
 use App\Http\Controllers\AddtocartController;
 use App\Http\Controllers\BannerController;
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Frontend\SslCommerzPaymentController ;
 use App\Http\Controllers\SignupController;
@@ -97,6 +98,12 @@ Route::group(['prefix'=> 'admin'],function(){
    Route::get('/banner-create',[BannerController::class,'CreateBanner'])->name('banners.create');
    Route::get('/banner-form',[BannerController::class,'form'])->name('banners.form');
    Route::post('/banner-store', [BannerController::class, 'store'])->name('banner.store');
+
+   //blog
+
+   Route::get('admin/blog-list',[BlogController::class,'index'])->name('blog.index');
+   Route::get('admin/blog/create',[BlogController::class,'createblog'])->name('blog.create');
+   Route::post('admin/blog/store',[BlogController::class,'Storeblog'])->name('store.blog');
 
 
    //product

@@ -9,7 +9,7 @@
     <tr>
       <th scope="col">#</th>
       <th scope="col">Product Name</th>
-      <th scope="col">Product Image</th>
+      <th scope="col">Product Image<                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    /th>
       <th scope="col">Product Category</th>
       <th scope="col">Product Description</th>
       <th scope="col">Price</th>
