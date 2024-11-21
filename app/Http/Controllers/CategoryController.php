@@ -23,7 +23,8 @@ class CategoryController extends Controller
 
      public function createform()
      {
-        return view('Backend.createcategory');
+      $allcategory = Category::all(); 
+        return view('Backend.createcategory',compact('allcategory'));
      }
 
      public function store( Request $request)
@@ -63,6 +64,7 @@ class CategoryController extends Controller
         Category::create([
         // bam pase table er column name => dan pase input field er name
          'name'=>$request->cat_name,
+         'parent_id'=>$request->parent_id,
           'description'=>$request->cat_description
        
                   

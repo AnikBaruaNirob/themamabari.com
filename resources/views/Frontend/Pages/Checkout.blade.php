@@ -10,7 +10,7 @@
             <div class="col-md-8">
                 <h4 class="mb-3">Billing Address</h4>
 
-                <form action="{{route('Order.Place')}}" method="post" class="needs-validation" novalidate enctype="multipart/form-data">
+                <form action="{{route('Order.Place')}}" method="post" class="needs-validation" enctype="multipart/form-data">
                     @csrf
                         <div class="col-md-6 mb-3">
                             <label for="Name">Name</label>
@@ -93,11 +93,11 @@
                     <h4 class="mb-3">Payment</h4>
 
                     <div class="form-check">
-                        <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked required>
+                        <input id="credit" name="paymentMethod" value="cod" type="radio" class="form-check-input" checked required>
                         <label class="form-check-label" for="credit">Cash on Delivery(COD)</label>
                     </div>
                     <div class="form-check">
-                        <input id="debit" name="paymentMethod" type="radio" class="form-check-input" required>
+                        <input id="debit" name="paymentMethod" value="online" type="radio" class="form-check-input" required>
                         <label class="form-check-label" for="debit">Online Payment</label>
                     </div>
                     <!-- <div class="form-check">

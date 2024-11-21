@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Customer;
 use App\Models\Order;
-
+use App\Models\OrderDetail;
+use App\Models\product;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Validator;
@@ -20,7 +22,8 @@ class CustomerController extends Controller
       
        //step1 validation
         $validation=Validator::make($request->all(),[
-            'customer_name'=>'required',
+            'customer_firstname'=>'required',
+            'customer_lastname'=>'required',
             'email'=>'required|email|unique:Customers,email',
             'password'=>'required|min:6|confirmed',
             'mobile_number'=>'required|min:11|max:11'
@@ -61,7 +64,8 @@ class CustomerController extends Controller
        //dd($CustomerImage);
        Customer::create([
         //bam pase column name=>dan pase value (form input)
-        'name'=>$request->customer_name,
+        'firstname'=>$request->customer_firstname,
+        'lastname'=>$request->customer_lastname,
         'email'=>$request->email,
         'password'=>bcrypt($request->password),
 
@@ -92,7 +96,7 @@ class CustomerController extends Controller
     {
         notify()->error($validation->getMessageBag());
        
-        return redirect()->back();
+        return redirect()->route('Home');
     }
 
    
@@ -116,7 +120,13 @@ class CustomerController extends Controller
 
     public function customerprofile(){
         
-      return view('Frontend.Pages.customerprofile');    
+        $orders=Order::where( 'customer_id',auth('customerGuard')->user()->id )->get();
+       // $order = Order::with('OrderDetails')->find($orderId);
+        // Generate a dynamic invoice number if not stored in the database
+     //$invoiceNumber = 'MB-' . str_pad($order->id, 6, '0', STR_PAD_LEFT); // Example: INV-000001
+    // $dueDate = Carbon::parse($order->created_at)->addDays(5)->format('Y/m/d');
+      return view('Frontend.Pages.customerprofile', compact('orders')); 
+      //return view('Frontend.Pages.customerprofile', compact('orders', 'invoiceNumber' , 'dueDate'));    
     }
 
     public function logout()
@@ -146,6 +156,32 @@ class CustomerController extends Controller
 //        return redirect()->route('product.list');
 
 // }
+public function cancelOrder($id)
+{
+    $order = Order::find($id);
+
+    if ($order) {
+        $order->update([
+            'status' => 'cancel'
+        ]);
+
+        $items = OrderDetail::where('order_id', $id)->get();
+
+        foreach ($items as $item) {
+            $product = Product::find($item->id69);
+
+            if ($product) {
+                $product->increment('stock', $item->quantity);
+            }
+        }
+
+        notify()->success('Order cancelled.');
+    } else {
+        notify()->error('Order not found.');
+    }
+
+    return redirect()->route('customer.profile');
+}
 
 
    

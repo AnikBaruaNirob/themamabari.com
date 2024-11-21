@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -10,6 +11,9 @@ class OrderController extends Controller
 
     public function orderList()
     {
-        return view('Backend.Partials.order-list');
+        $orders = Order::with('customer')->orderBy('created_at', 'desc')->paginate(5);
+        return view('Backend.pages.order-list', compact('orders'));
     }
+
+
 }

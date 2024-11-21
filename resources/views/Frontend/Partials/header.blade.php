@@ -29,15 +29,7 @@
         <nav class="humberger__menu__nav mobile-menu">
             <ul>
                 <li class="active"><a href="{{Route('Home')}}">Home</a></li>
-                <li><a href="./shop-grid.html">Shop</a></li>
-                <li><a href="#">Pages</a>
-                    <ul class="header__menu__dropdown">
-                        <li><a href="./shop-details.html">Shop Details</a></li>
-                        <li><a href="./shoping-cart.html">Shoping Cart</a></li>
-                        <li><a href="./checkout.html">Check Out</a></li>
-                        <li><a href="./blog-details.html">Blog Details</a></li>
-                    </ul>
-                </li>
+                <li><a href="{{route('frontend.products')}}">All Products</a></li>
                 <li><a href="./blog.html">Blog</a></li>
                 <li><a href="./contact.html">Contact</a></li>
             </ul>
@@ -91,7 +83,7 @@
               <!-- Button trigger modal -->
               <span>
     <a href="{{route('customer.profile')}}" style="color: black;">
-        {{ auth('customerGuard')->user()->name }}
+        {{ auth('customerGuard')->user()->Fullname }}
     </a>
     
 </span>
@@ -121,8 +113,13 @@
         @csrf
         <div class="modal-body">
           <div>
-            <label for="">Enter your name:</label>
-            <input required type="text" name="customer_name" placeholder="Enter your name" class="form-control">
+            <label for="">Enter your First Name:</label>
+            <input required type="text" name="customer_firstname" placeholder="Enter your First Name" class="form-control">
+          </div>
+
+          <div>
+            <label for="">Enter your Last Name:</label>
+            <input required type="text" name="customer_lastname" placeholder="Enter your Last Name" class="form-control">
           </div>
 
           <div>
@@ -218,16 +215,7 @@
                     <nav class="header__menu">
                         <ul>
                             <li class="active"><a href="{{Route('Home')}}">Home</a></li>
-                            <li><a href="{{Route('product.shop')}}">Shop</a></li>
-                            <li><a href="#">Pages</a>
-                                <ul class="header__menu__dropdown">
-                                <li><a href="{{route('frontend.products')}}">All Products</a> </li>
-                                    <li><a href="./shop-details.html">Shop Details</a></li>
-                                    <li><a href="./shoping-cart.html">Shoping Cart</a></li>
-                                    <li><a href="./checkout.html">Check Out</a></li>
-                                    <li><a href="./blog-details.html">Blog Details</a></li>
-                                </ul>
-                            </li>
+                            <li><a href="{{route('frontend.products')}}">All Products</a> </li>
                             <li><a href="./blog.html">Blog</a></li>
                             <li><a href="./contact.html">Contact</a></li>
                         </ul>

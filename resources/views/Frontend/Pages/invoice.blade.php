@@ -10,7 +10,7 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-12">
-                <div class="card">
+                <div class="card" id="printArea">
                     <div class="card-header bg-primary text-white">
                         <h4 class="mb-0">Invoice</h4>
                     </div>
@@ -25,27 +25,24 @@
                                 <div>Phone: 0195220070</div>
                             </div>
                             <div class="col-sm-6 text-end">
-                                <h6 class="mb-3">To: </h6>
+                                <h6 class="mb3">To: </h6>
                                 <div><strong>{{$order->name}}</strong></div>
                                 <div>Street Address</div>
                                 <div>{{$order->address}}</div>
-                                <div>Email:{{$order->email}} </div>
+                                <div>Email: {{$order->email}}</div>
                                 <div>Phone: {{$order->mobile}}</div>
                             </div>
                         </div>
 
                         <div class="row mb-4">
                             <div class="col-sm-6">
-                                
-                                <h6 class="mb-3">Invoice #: {{$invoiceNumber}} </h6>
-                                <h6>Invoice Date: {{$order-> created_at}}</h6>
-                                <h6>Due Date: {{$dueDate}} </h6>
+                                <h6 class="mb-3">Invoice #: {{$invoiceNumber}}</h6>
+                                <h6>Invoice Date: {{$order->created_at}}</h6>
+                                <h6>Due Date: {{$dueDate}}</h6>
                             </div>
                             <div class="col-sm-6 text-end">
-                          
                                 <h6 class="mb-3">Total Amount Due:</h6>
                                 <h2 class="text-danger">{{ number_format(array_sum(array_column(session()->get('basket'), 'subtotal')) * 1.10, 2) }} BDT</h2>
-                       
                             </div>
                         </div>
 
@@ -61,7 +58,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                   @foreach($order->OrderDetails as $key => $item)
+                                    @foreach($order->OrderDetails as $key => $item)
                                         <tr>
                                             <td>{{ $key + 1 }}</td>
                                             <td>{{$item->product_name}}</td>
@@ -82,7 +79,7 @@
                                     <tbody>
                                         <tr>
                                             <td class="text-end"><strong>Subtotal</strong></td>
-                                            <td class="text-end"><b> {{ array_sum(array_column(session()->get('basket'),'subtotal')) }}.00 BDT </b></td>
+                                            <td class="text-end"><b>{{ array_sum(array_column(session()->get('basket'),'subtotal')) }}.00 BDT</b></td>
                                         </tr>
                                         <tr>
                                             <td class="text-end"><strong>Tax (10%)</strong></td>
@@ -95,23 +92,36 @@
                                     </tbody>
                                 </table>
                             </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-12 text-center">
-                                <p class="text-muted">
+                            <p class="text-muted" align='center'>
                                     Thank you for your business!
                                 </p>
-                                <a href="" class="btn btn-primary">Print Invoice</a>
-                                <a href="#" class="btn btn-secondary">Download PDF</a>
-                            </div>
                         </div>
+
+                      
                     </div>
                 </div>
             </div>
+            <div class="row">
+                            <div class="col-md-12 text-center">
+                             
+                                <a href="javascript:void(0)" class="btn btn-primary" onclick="printReport()">Print Invoice</a>
+                                <a href="{{ route('invoice.pdf', $order->id) }}" class="btn btn-secondary">Download PDF</a>
+                                <a href="{{route('Home')}}" class="btn btn-success">Continue Shopping</a>
+                            </div>
+                        </div>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript">
+        function printReport() {
+            var printContents = document.getElementById("printArea").innerHTML;
+            var originalContents = document.body.innerHTML;
+
+            document.body.innerHTML = printContents;
+            window.print();
+            document.body.innerHTML = originalContents;
+        }
+    </script>
 </body>
 </html>

@@ -35,6 +35,12 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="assets/favicon/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
+
+<link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
+
+<link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet">
     <!-- Vendors styles-->
     <link rel="stylesheet" href="https://coreui.io/demos/bootstrap/5.0/free/vendors/simplebar/css/simplebar.css">
     <link rel="stylesheet" href="https://coreui.io/demos/bootstrap/5.0/free/css/vendors/simplebar.css">
@@ -48,6 +54,7 @@
     <script src="https://coreui.io/demos/bootstrap/5.0/free/js/color-modes.js"></script>
     <link href="https://coreui.io/demos/bootstrap/5.0/free/vendors/@coreui/chartjs/css/coreui-chartjs.css" rel="stylesheet">
     <style type="text/css">
+
  
  #laravel-notify{
  z-index: 9999;
@@ -90,14 +97,18 @@
       });
     </script>
     <!-- Plugins and scripts required by this view-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
     <script src="https://coreui.io/demos/bootstrap/5.0/free/vendors/chart.js/js/chart.umd.js"></script>
     <script src="https://coreui.io/demos/bootstrap/5.0/free/vendors/@coreui/chartjs/js/coreui-chartjs.js"></script>
     <script src="https://coreui.io/demos/bootstrap/5.0/free/vendors/@coreui/utils/js/index.js"></script>
     <script src="https://coreui.io/demos/bootstrap/5.0/free/js/main.js"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
     <script>
     </script>
    <x-notify::notify />
    @notifyJs
+   @stack('js')
   </body>
  
 </html>

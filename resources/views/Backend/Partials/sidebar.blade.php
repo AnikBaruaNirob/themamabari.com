@@ -11,7 +11,7 @@
         <button class="btn-close d-lg-none" type="button" data-coreui-dismiss="offcanvas" data-coreui-theme="dark" aria-label="Close" onclick="coreui.Sidebar.getInstance(document.querySelector(&quot;#sidebar&quot;)).toggle()"></button>
       </div>
       <ul class="sidebar-nav" data-coreui="navigation" data-simplebar="">
-        <li class="nav-item"><a class="nav-link" href="index.html">
+        <li class="nav-item"><a class="nav-link" href="{{route('home')}}">
             <svg class="nav-icon">
               <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-speedometer"></use>
             </svg> Dashboard</a></li>
@@ -30,16 +30,26 @@
             <svg class="nav-icon">
               <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-drop"></use>
             </svg> Product-List</a></li>
-            
-            <li class="nav-item"><a class="nav-link" href="{{url('/add-to-cart')}}">
+
+            <li class="nav-item"><a class="nav-link" href="{{Route('order.list')}}">
             <svg class="nav-icon">
               <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-drop"></use>
-            </svg> Add to Cart</a></li>
+            </svg> Order-List</a></li>
+
+            <li class="nav-item"><a class="nav-link" href="{{route('product.stock')}}">
+            <svg class="nav-icon">
+              <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-drop"></use>
+            </svg> Product Stock </a></li>
+            
+            <li class="nav-item"><a class="nav-link" href="{{route('banners.create')}}">
+            <svg class="nav-icon">
+              <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-drop"></use>
+            </svg>Banner Slider</a></li>
         
-            <li class="nav-item"><a class="nav-link" href="{{url('/add-to-wishlist')}}">
+            <li class="nav-item"><a class="nav-link" href="{{route('blog.index')}}">
             <svg class="nav-icon">
               <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-pencil"></use>
-            </svg> Add to Wish-List </a></li>
+            </svg> Blog Management</a></li>
             
             <li class="nav-item"><a class="nav-link" href="typography.html">
             <svg class="nav-icon">
