@@ -26,12 +26,32 @@ class BlogController extends Controller
 
         ]);
 
+        
+        $fileName=null;
+       
+        //check file exist
+        if($request->hasFile('image'))
+        {
+       
+            $file=$request->file('image');
+
+            //file name generate
+            $fileName=date('Ymdhis').'.'.$file->getClientOriginalExtension();
+
+             //file store where i want to 
+            $file->storeAs('/',$fileName);
+       
+        }
+
         $blogpost = Blogpost::create([
             'title' => $request -> title,
             'slug' => $request -> slug , 
-            'content' => $request -> content
+            'content' => $request -> content,
+            'image'=> $fileName
             
         ]);
+        notify()->success('Blog added successfully.');
+        return redirect()->route('blog.index');
 
     }
 

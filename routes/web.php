@@ -150,5 +150,3 @@ Route::group(['prefix'=> 'admin'],function(){
 
 });
 
-
-// hello anik

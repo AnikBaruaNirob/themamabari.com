@@ -21,18 +21,21 @@
                     <th>#</th>
                     <th>Title</th>
                     <th>Slug</th>
+                    <th>Content</th>
+                    <th>Image</th>
                     <th>Created At</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
-            
+            @foreach($blogpost as $key => $blog)
                     <tr>
-                    @foreach($blogpost as $key => $blog)
+     
                         <td></td>
                         <td>{{$blog-> title}}</td>
                         <td>{{$blog-> slug}}</td>
                         <td>{{$blog -> content}}</td>
+                        <td><img src="{{ url('uploads/' . $blog->image) }}" width="100"></td>
                         <td>
                             <a href="" class="btn btn-sm btn-warning">Edit</a>
                             <form action="" method="POST" class="d-inline-block">
@@ -41,10 +44,10 @@
                                 <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this post?')">Delete</button>
                             </form>
                         </td>
-                        @endforeach
+                      
                     </tr>
       
-                    
+                    @endforeach
             </tbody>
         </table>
 
